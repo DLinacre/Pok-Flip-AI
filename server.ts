@@ -207,6 +207,9 @@ Provide concise, actionable, and data-backed advice in formatted Markdown. Use b
 
 // Serve frontend in production or setup Vite dev server
 async function startServer() {
+  if (process.env.VERCEL) {
+    return;
+  }
   if (process.env.NODE_ENV !== "production") {
     const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
@@ -228,3 +231,5 @@ async function startServer() {
 }
 
 startServer();
+
+export default app;
